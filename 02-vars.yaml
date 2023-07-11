@@ -6,3 +6,9 @@
     - name: Printing Hello from play1
       ansible.builtin.debug:
         msg: Value of URL is {{ URL }}
+
+    - name: Printing Hello from play1
+      ansible.builtin.debug:
+        msg: Value of URL is {{ URL }}        
+      vars:
+        URL: play.google.com
