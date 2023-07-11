@@ -1,7 +1,0 @@
--name: play20
-hosts: all
-tasks:
-  -name: Printing hello to ansible from play20
-   ansible.builtin.debug:
-    msg: hello to ansible from play20 task1 
-
