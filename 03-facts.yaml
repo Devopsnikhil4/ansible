@@ -11,3 +11,7 @@
     - name: Printing the macAddress of the machine
       ansible.builtin.debug:
         msg: macAddress is {{ ansible_default_ipv4.macaddress }}
+
+    - name: Printing the macAddress of the machine
+      ansible.builtin.debug:
+        msg: macAddress is {{ ansible_default_ipv4.address }}        
