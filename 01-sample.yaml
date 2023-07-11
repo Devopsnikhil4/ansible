@@ -1,6 +1,6 @@
-- name: play20
+- name: Play1
   hosts: all
   tasks:
-    - name: Printing hello to ansible from play20
+    - name: Printing Hello from play1
       ansible.builtin.debug:
-        msg: hello to ansible from play20 task1
+        msg: Hello from play1 of task1
