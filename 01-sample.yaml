@@ -1,18 +1,18 @@
-- name: Play1
-  hosts: all
+- name: Play1  
+  hosts: all 
   tasks:
-    - name: Printing Hello from play1
+    - name: Printing Hello From Play1
       ansible.builtin.debug:
-        msg: Hello from play1 of task1
+        msg: Hello from play1 of task1 
 
-    - name: Printing Hi from play1
+    - name: Printing Hai From Play1
       ansible.builtin.debug:
-        msg: Hi from play1 of task2
+        msg: Hai from play1 of task2 
 
-- name: Play2
-  hosts: Prod
+- name: Play2  
+  hosts: prod 
   tasks:
-    - name: Printing Hello from play2
+    - name: Printing Hai From Play2
       ansible.builtin.debug:
         msg: Hello from play2 of task1
       
