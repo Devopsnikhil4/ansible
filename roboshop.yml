@@ -1,4 +1,5 @@
-- name: Playbook to configure roboshop project
-  hosts: frontend
+- name: Playbook to set up the roboshop project 
+  become: yes
+  hosts: "{{COMPONENT}}" 
   roles: 
-    - frontend
+      - "{{COMPONENT}}"
