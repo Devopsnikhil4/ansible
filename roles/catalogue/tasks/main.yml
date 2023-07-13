@@ -1,3 +1,0 @@
-- name: Printing Hello From catalogue
-  ansible.builtin.debug:
-      msg: Hello from catalogue
