@@ -8,8 +8,14 @@
     name: mongodb-org
     state: present
 
+- name: Updating the mongodb config to be public
+  ansible.builtin.replace:
+    path: /etc/mongod.conf
+    regexp: '127.0.0.1'
+    replace: '0.0.0.0'    
+
 - name: starting mongodb
   ansible.builtin.systemd:
-    name: mongodb
+    name: mongod
     state: started
     enabled: true
