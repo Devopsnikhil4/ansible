@@ -9,7 +9,7 @@
     state: started
     enabled: true
 
-- name: Download and extracting the frontend
+- name: Download and extracting the {{ COMPONENT }}
   ansible.builtin.include_role:
     name: common
     tasks_from: download
