@@ -26,6 +26,14 @@
     dest: /etc/systemd/system/{{COMPONENT}}.service    
 
 
+- name: Restarting Catalogue
+  ansible.builtin.systemd:
+    name: catalogue
+    state: restarted
+    enabled: true   
+    daemon_reload: true  
+
+
 
 
    
