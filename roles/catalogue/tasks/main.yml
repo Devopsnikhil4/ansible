@@ -16,6 +16,9 @@
     name: common
     tasks_from: download
 
+- name: Generating artifacts with npm install
+  community.general.npm:
+    path: /home/{{APPUSER}}/{{COMPONENT}}/
 
 
 
