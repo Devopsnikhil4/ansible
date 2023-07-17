@@ -1,37 +1,37 @@
-- name: Copy the {COMPONENT} repo
+- name: Copy the mongodb repo
   ansible.builtin.copy:
     src: mongodb.repo
-    dest: /etc/yum.repos.d/COMPONENT.repo
+    dest: /etc/yum.repos.d/mongodb.repo
 
-- name: Installing {COMPONENT}
+- name: Installing mongodb
   ansible.builtin.package:
     name: mongodb-org
     state: present
 
-- name: Updating the {COMPONENT} config to be public
+- name: Updating the mongodb config to be public
   ansible.builtin.replace:
     path: /etc/COMPONENT.conf
     regexp: '127.0.0.1'
     replace: '0.0.0.0'    
 
-- name: starting {COMPONENT}
+- name: starting mongodb
   ansible.builtin.systemd:
     name: mongod
     state: started
     enabled: true
 
-- name: Download the COMPONENT schema
+- name: Download the mongodb schema
   ansible.builtin.unarchive:
     src: https://github.com/stans-robot-project/{COMPONENT}/archive/main.zip
     dest: /tmp
     remote_src: yes
 
-- name: Injecting the COMPONENT catalogue schema
+- name: Injecting the mongodb catalogue schema
   community.mongodb.mongodb_shell:
     file: "/tmp/${COMPONENT}-main/catalogue.js"
     idempotent: yes
 
-- name: Injecting the COMPONENT users schema
+- name: Injecting the mongodb users schema
   community.mongodb.mongodb_shell:
     file: "/tmp/${COMPONENT}-main/users.js"
     idempotent: yes    
