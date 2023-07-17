@@ -1,20 +1,20 @@
-- name: Copy the mongodb repo
+- name: Copy the {COMPONENT} repo
   ansible.builtin.copy:
-    src: mongodb.repo
-    dest: /etc/yum.repos.d/mongodb.repo
+    src: {COMPONENT}.repo
+    dest: /etc/yum.repos.d/{COMPONENT}.repo
 
-- name: Installing mongodb
+- name: Installing {COMPONENT}
   ansible.builtin.package:
-    name: mongodb-org
+    name: {COMPONENT}-org
     state: present
 
-- name: Updating the mongodb config to be public
+- name: Updating the {COMPONENT} config to be public
   ansible.builtin.replace:
     path: /etc/mongod.conf
     regexp: '127.0.0.1'
     replace: '0.0.0.0'    
 
-- name: starting mongodb
+- name: starting {COMPONENT}
   ansible.builtin.systemd:
     name: mongod
     state: started
