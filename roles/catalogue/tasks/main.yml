@@ -1,0 +1,7 @@
+- name: configuring nodejs repo
+  ansible.builtin.shell: curl --silent --location https://rpm.nodesource.com/setup_16.x | sudo bash -
+
+- name: Installing mongodb
+  ansible.builtin.package:
+    name: nodejs -y
+    state: present
