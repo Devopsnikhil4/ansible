@@ -3,5 +3,5 @@
 
 - name: Installing mongodb
   ansible.builtin.package:
-  name: nodejs -y
-  state: present
+    name: nodejs
+    state: present
