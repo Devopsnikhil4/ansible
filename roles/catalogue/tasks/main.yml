@@ -8,5 +8,5 @@
 
 - name: creating APPUSER 
   ansible.builtin.user:
-    name: "{{roboshop}}"
-    comment: Roboshop application user  
+    name: "{{APPUSER}}"
+    comment: Roboshop application user
