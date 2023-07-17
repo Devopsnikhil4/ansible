@@ -19,7 +19,3 @@
     remote_src: yes  
   ignore_errors: yes   
 
-- name: Generating artifacts with npm install
-  community.general.npm:
-    name: coffee-script
-    path: /home/{{APPUSER}}/{{COMPONENT}}

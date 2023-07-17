@@ -16,7 +16,10 @@
     name: common
     tasks_from: download
 
-    
+- name: Generating artifacts with npm install
+  community.general.npm:
+    name: coffee-script
+    path: /home/{{APPUSER}}/{{COMPONENT}}
 
 
 
