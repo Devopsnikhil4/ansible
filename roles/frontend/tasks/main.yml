@@ -25,14 +25,5 @@
     dest: /usr/share/nginx/html/
     remote_src: yes
 
-- name: Copy the proxy config
-  ansible.builtin.copy:
-    src: roboshop.conf
-    dest: /etc/nginx/default.d/roboshop.conf
-    
-- name: starting nginx
-  ansible.builtin.systemd:
-    name: nginx
-    state: restarted
-    enabled: true 
+
 
