@@ -17,7 +17,7 @@
 - name: starting {{ COMPONENT }}
   ansible.builtin.systemd:
     name: mongod
-    state: started
+    state: restarted
     enabled: true
 
 - name: Download and extracting the {{ COMPONENT }} schema
