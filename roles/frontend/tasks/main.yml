@@ -26,7 +26,7 @@
     remote_src: yes
 
 - name: Copy the proxy config
-  ansible.builtin.copy:
+  ansible.builtin.template:
     src: roboshop.conf
     dest: /etc/nginx/default.d/roboshop.conf
     
@@ -35,3 +35,6 @@
     name: nginx
     state: restarted
     enabled: true 
+
+- name: configuring Node Name Repo
+  ansible.builtin.shell: set-hostname {{COMPONENT}}-{{ENV}}
