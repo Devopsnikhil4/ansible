@@ -18,7 +18,7 @@
 
 - name: Generating artifacts with npm install
   community.general.npm:
-    path: /home/{{APPUSER}}/{{COMPONENT}}/
+    path: /home/{{ APPUSER }}/{{ COMPONENT }}/
 
 - name: Copy the systemd file
   ansible.builtin.template:
@@ -28,7 +28,7 @@
 
 - name: Restarting {{COMPONENT}}
   ansible.builtin.systemd:
-    name: "{{ COMPONENT }}"
+    name: {{ COMPONENT }}
     state: restarted
     enabled: true   
     daemon_reload: true  
