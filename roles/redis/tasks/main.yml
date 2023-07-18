@@ -1,0 +1,35 @@
+- name: Copy the {{ COMPONENT }} repo
+  ansible.builtin.copy:
+    src: redis.repo
+    dest: /etc/yum.repos.d/redis.repo
+
+- name: Installing redis
+  ansible.builtin.package:
+    name: redis-6.2.11
+    state: present
+
+- name: Updating the {{ COMPONENT }} config to be public
+  ansible.builtin.replace:
+    path: /etc/redis.conf
+    regexp: '127.0.0.1'
+    replace: '0.0.0.0'   
+
+- name: Updating the {{ COMPONENT }} config to be public
+  ansible.builtin.replace:
+    path: /etc/redis/redis.conf
+    regexp: '127.0.0.1'
+    replace: '0.0.0.0'  
+
+- name: starting {{ COMPONENT }}
+  ansible.builtin.systemd:
+    name: redis
+    state: started
+    enabled: true 
+
+- name: configuring Node Name Repo
+  ansible.builtin.shell: set-hostname {{COMPONENT}}-{{ENV}}
+
+
+
+
+   
