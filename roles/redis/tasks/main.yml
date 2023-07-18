@@ -14,13 +14,7 @@
     regexp: '127.0.0.1'
     replace: '0.0.0.0'   
 
-- name: Updating the {{ COMPONENT }} config to be public
-  ansible.builtin.replace:
-    path: /etc/redis/redis.conf
-    regexp: '127.0.0.1'
-    replace: '0.0.0.0'  
-
-- name: starting {{ COMPONENT }}
+ - name: starting {{ COMPONENT }}
   ansible.builtin.systemd:
     name: redis
     state: started
