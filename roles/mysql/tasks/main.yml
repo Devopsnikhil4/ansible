@@ -1,0 +1,35 @@
+- name: Copy the {{ COMPONENT }} repo
+  ansible.builtin.copy:
+    src: mongodb.repo
+    dest: /etc/yum.repos.d/mongodb.repo
+
+- name: Installing {{ COMPONENT }}
+  ansible.builtin.package:
+    name: mongodb-org
+    state: present
+
+- name: Updating the {{ COMPONENT }} config to be public
+  ansible.builtin.replace:
+    path: /etc/mongod.conf
+    regexp: '127.0.0.1'
+    replace: '0.0.0.0'    
+
+- name: starting {{ COMPONENT }}
+  ansible.builtin.systemd:
+    name: mongod
+    state: started
+    enabled: true
+
+- name: Download and extracting the {{ COMPONENT }} schema
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: download
+
+- name: Injecting the {{ COMPONENT }} schema
+  community.mongodb.mongodb_shell:
+    file: "/tmp/{{COMPONENT}}-main/{{ item }}.js"
+    idempotent: yes
+  loop:
+    - catalogue
+    - users
+ 
