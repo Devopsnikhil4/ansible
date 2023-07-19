@@ -4,6 +4,6 @@
     comment: Roboshop application user
   register: OUT
 
--name: Just Printing the OUTPUT
- ansible.builtin.debug:
+- name: Just Printing the OUTPUT
+  ansible.builtin.debug:
    msg: "{{OUT}}"
