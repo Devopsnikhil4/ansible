@@ -4,8 +4,10 @@
     dest: /etc/yum.repos.d/{{COMPONENT}}.repo
 
 - name: Installing {{ COMPONENT }}
-  ansible.builtin.package:
-    name: mysql-community-server
+  ansible.builtin.yum:
+    name: 
+      - mysql-community-server
+      - python3-PyMySQL
     state: present
 
 - name: starting {{ COMPONENT }}
@@ -13,7 +15,6 @@
     name: mysqld
     state: started
     enabled: true
-  
 
 
 - name: validate the default password
@@ -36,6 +37,9 @@
     - name: Rest Default {{COMPONENT}} Default root password
       ansible.builtin.shell: echo "ALTER USER 'root'@'localhost' IDENTIFIED BY 'RoboShop@1';" | mysql --connect-expired-password -uroot -p"{{DEFAULT_PASSWORD}}"
 
+- name: Uninstalling  {{ COMPONENT }} password validate plugin
+  ansible.builtin.shell: echo "UNINSTALL PLUGIN validate_password;" | mysql -uroot -pRoboShop@1
+  ignore_errors: yes
 - name: Download and extracting the {{ COMPONENT }} schema
   ansible.builtin.include_role:
     name: common
