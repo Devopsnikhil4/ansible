@@ -31,7 +31,7 @@
 - name: Installing {{ COMPONENT }} dependencis
   ansible.builtin.pip:
     requirements: /home/{{APPUSER}}/{{COMPONENT}}/
-    executable: pip3.3
+    executable: pip3
 
 - name: Configuring the service
   ansible.builtin.include_role:
