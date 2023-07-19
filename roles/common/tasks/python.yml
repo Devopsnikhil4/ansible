@@ -1,8 +1,8 @@
 - name: Installing Python on {{ COMPONENT }}-{{ENV}} server
   ansible.builtin.yum:
     name: 
-      - python36 
-      - gcc 
+      - python36
+      - gcc
       - python3-devel
     state: present
 
