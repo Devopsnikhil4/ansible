@@ -15,3 +15,28 @@
   ansible.builtin.include_role:
     name: common
     tasks_from: download
+
+- name: Updating the UID in the {{ COMPONENT }}.ini file
+  ansible.builtin.lineinfile:
+    path: /etc/selinux/config
+    regexp: '^uid'
+    line: uid = {{OUT.uid}}
+
+- name: Updating the GID in the {{ COMPONENT }}.ini file
+  ansible.builtin.lineinfile:
+    path: /etc/selinux/config
+    regexp: '^gid'
+    line: uid = {{OUT.group}}
+
+- name: Installing {{ COMPONENT }} dependencis
+  ansible.builtin.pip:
+    requirements: /home/{{APPUSER}}/{{COMPONENT}}/
+    executable: pip3.3
+
+- name: Configuring the service
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: config_svc
+
+- name: configuring Node Name Repo
+  ansible.builtin.shell: set-hostname {{COMPONENT}}-{{ENV}}
