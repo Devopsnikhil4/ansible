@@ -10,6 +10,6 @@
 
 - name: starting {{ COMPONENT }}
   ansible.builtin.systemd:
-    name: mongod
+    name: mysqld
     state: started
     enabled: true
