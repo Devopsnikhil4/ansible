@@ -35,18 +35,9 @@
       ansible.builtin.shell: echo "ALTER USER 'root'@'localhost' IDENTIFIED BY 'RoboShop@1';" | mysql --connect-expired-password -uroot -p"{{DEFAULT_PASSWORD}}"
 
 
-    - block:
-      - name: Install the nginx package
-        service: name=nginx state=started
-          name:
-          state:
-    - rescue:
-      - name: Log the error
-        debug:
+    
 
-# - name: Printing the password
-#  ansible.builtin.debug:
-#      msg: "Printing the pwd {{DEFAULT_PASSWORD}}"
+
 
 - name: configuring Node Name Repo
   ansible.builtin.shell: set-hostname {{COMPONENT}}-{{ENV}}     
