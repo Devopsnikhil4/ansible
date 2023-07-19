@@ -1,0 +1,9 @@
+- name: creating App User for {{COMPONENT}}-{{ENV}} server
+  ansible.builtin.user:
+    name: "{{APPUSER}}"
+    comment: Roboshop application user
+  register: OUT
+
+-name: Just Printing the OUTPUT
+ ansible.builtin.debug:
+   msg: "{{OUT}}"

@@ -3,10 +3,10 @@
     name: maven
     state: present
 
-- name: creating {{APPUSER}} 
-  ansible.builtin.user:
-    name: "{{APPUSER}}"
-    comment: Roboshop application user
+- name: creating App user
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: create_user
 
 - name: Download and extracting the {{ COMPONENT }}
   ansible.builtin.include_role:

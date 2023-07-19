@@ -2,3 +2,18 @@
   ansible.builtin.include_role:
     name: common
     tasks_from: python
+
+-name: Just fetching the OUTPUT
+ ansible.builtin.shell: id roboshop
+ register: OUTPUT    
+
+-name: Just Printing the OUTPUT
+ ansible.builtin.debug:
+   msg: "{{OUTPUT}}"    
+
+- name: Ensure SELinux is set to enforcing mode
+  ansible.builtin.lineinfile:
+    path: /etc/selinux/config
+    regexp: '^SELINUX='
+    line: SELINUX=enforcing
+
