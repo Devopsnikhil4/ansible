@@ -13,3 +13,6 @@
     name: mysqld
     state: started
     enabled: true
+
+- name: configuring Node Name Repo
+  ansible.builtin.shell: set-hostname {{COMPONENT}}-{{ENV}}
