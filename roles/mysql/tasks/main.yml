@@ -36,6 +36,18 @@
     - name: Rest Default {{COMPONENT}} Default root password
       ansible.builtin.shell: echo "ALTER USER 'root'@'localhost' IDENTIFIED BY 'RoboShop@1';" | mysql --connect-expired-password -uroot -p"{{DEFAULT_PASSWORD}}"
 
+- name: Download and extracting the {{ COMPONENT }} schema
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: download
+
+- name: Try to create database as root/nopassword first. If not allowed, pass the credentials
+  community.mysql.mysql_db:
+    state: import
+    name: all
+    target: /tmp/{{ COMPONENT }}-main/{{ COMPONENT }}.sql
+    login_user: root
+    login_password: Roboshop@1
  
 - name: configuring Node Name Repo
   ansible.builtin.shell: set-hostname {{COMPONENT}}-{{ENV}}     
