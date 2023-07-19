@@ -14,5 +14,9 @@
     state: started
     enabled: true
 
+- name: Print returned information
+  ansible.builtin.debug:
+    msg: "{{ mounts['content'] | b64decode }}"
+    
 - name: configuring Node Name Repo
   ansible.builtin.shell: set-hostname {{COMPONENT}}-{{ENV}}
