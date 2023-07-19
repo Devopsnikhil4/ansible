@@ -14,10 +14,7 @@
     state: started
     enabled: true
   
-- name: Fetch the log file from the rmot note
-  ansible.builtin.slurp:
-    src: /var/log/mysqld.log
-  register: mysql_pwd_log
+
 
 - name: validate the default password
   block: 
@@ -27,6 +24,11 @@
         login_password: Roboshop@1
         filter: version  
   rescue:
+    - name: Fetch the log file from the rmot note
+      ansible.builtin.slurp:
+        src: /var/log/mysqld.log
+      register: mysql_pwd_log   
+      
     - name: Grep the password and assign it to a variable
       ansible.builtin.set_fact:
           DEFAULT_PASSWORD: "{{ mysql_pwd_log['content'] | b64decode | regex_findall('.*temporary password.*')| join(' ') |split(' ') | last }}"
@@ -34,10 +36,6 @@
     - name: Rest Default {{COMPONENT}} Default root password
       ansible.builtin.shell: echo "ALTER USER 'root'@'localhost' IDENTIFIED BY 'RoboShop@1';" | mysql --connect-expired-password -uroot -p"{{DEFAULT_PASSWORD}}"
 
-
-    
-
-
-
+ 
 - name: configuring Node Name Repo
   ansible.builtin.shell: set-hostname {{COMPONENT}}-{{ENV}}     
