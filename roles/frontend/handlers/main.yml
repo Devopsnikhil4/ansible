@@ -1,5 +1,0 @@
-- name: Restarting nginx
-  ansible.builtin.systemd:
-    name: nginx
-    state: restarted
-    enabled: true 
