@@ -17,7 +17,7 @@
     owner: "{{APPUSER}}"
     group: "{{APPUSER}}"
     remote_src: yes  
-  ignore_errors: yes 
+  ignore_errors: yes
 
   
 
