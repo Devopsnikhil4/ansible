@@ -30,8 +30,6 @@
     src: roboshop.conf
     dest: /etc/nginx/default.d/roboshop.conf
   notify: Restarting Nginx
-
-
     
 - name: starting nginx
   ansible.builtin.systemd:
