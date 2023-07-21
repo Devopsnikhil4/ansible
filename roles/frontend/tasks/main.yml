@@ -29,12 +29,12 @@
   ansible.builtin.template:
     src: roboshop.conf
     dest: /etc/nginx/default.d/roboshop.conf
-    notify: Restarting Nginx
+  
     
-- name: starting nginx
+- name: Restarting nginx
   ansible.builtin.systemd:
     name: nginx
-    state: started
+    state: Restarted
     enabled: true 
 
 - name: configuring Node Name Repo
