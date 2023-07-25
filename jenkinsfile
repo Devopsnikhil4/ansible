@@ -8,9 +8,9 @@ pipeline{
     }
     stages {
         stage('Ansible Dry Run') {
-            steps{
+            steps {
                 sh '''            
-                    Ansible-playbook robot-dryrun.yaml -e COMPONENT=${COMPONENT} -e ansible_user=centos -e ansible_password=${SSHCRED_PSW} -e ENV=dev              
+                    ansible-playbook robot-dryrun.yaml -e COMPONENT=${COMPONENT} -e ansible_user=centos -e ansible_password=${SSHCRED_PSW} -e ENV=dev      
                 '''
             }
         }
