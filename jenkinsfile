@@ -9,23 +9,36 @@ pipeline{
     stages {
         stage('Ansible Code Scan') {
             steps {
-                when { branch pattern: "feature-.*", comparator: "REGEXP"}
+                sh "env"
                 sh "echo Code Scan Completed"
             }
         }
+
         stage('Ansible Lint Checks') {
-            steps {
-                sh "echo Lint checks Completed"
+            when { branch pattern: "feature-.*", comparator: "REGEXP"}
+            steps {             
+                sh "env"
+                sh "echo Runing against the feature branch whose name is ${GIT_BRANCH}"
+                sh "echo Lint Scan completed"
+            
             }
         }
+
         stage('Ansible Dry Run') {
-            steps {
+            when { branch pattern: "PR-.*", comparator: "REGEXP"}
+            steps { 
                 sh '''            
                     ansible-playbook robot-dryrun.yaml -e COMPONENT=${COMPONENT} -e ansible_user=centos -e ansible_password=${SSHCRED_PSW} -e ENV=dev      
                 '''
             }
         }
+
         stage('Promoting code to Prod Branch') {
+            when {
+                expression {
+                    env.TAG_NAME ==".*"
+                }
+            }
             steps {
                 sh "echo Merging the feature to PROD Branch"
             }
