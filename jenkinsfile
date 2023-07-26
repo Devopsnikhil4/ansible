@@ -34,11 +34,7 @@ pipeline{
         }
 
         stage('Promoting code to Prod Branch') {
-            when {
-                expression {
-                    env.TAG_NAME ==".*"
-                }
-            }
+            when { expression {env.TAG_NAME != null} }
             steps {
                 sh "echo Merging the feature to PROD Branch"
             }
