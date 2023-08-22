@@ -1,0 +1,2 @@
+SECRETS: "{{ lookup('amazon.aws.aws_secret', 'robot/dev/secrets', region='us-east-1') }}"
+APPUSER: roboshop
