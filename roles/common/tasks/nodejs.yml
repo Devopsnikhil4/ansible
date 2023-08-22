@@ -11,6 +11,11 @@
     name: "{{APPUSER}}"
     comment: Roboshop application user
 
+- name: Downloading the .pem file needed for NodeJS Components
+  ansible.builtin.get_url:
+    url: https://truststore.pki.rds.amazonaws.com/global/global-bundle.pem
+    dest: "/home/{{APPUSER}}/global-bundle.pem"
+
 - name: Download and extracting the {{ COMPONENT }}
   ansible.builtin.include_role:
     name: common
