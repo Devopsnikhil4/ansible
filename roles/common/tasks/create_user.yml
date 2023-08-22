@@ -1,12 +1,12 @@
-- name: creating App User for {{COMPONENT}}-{{ENV}} server
+- name: Creating App User
   ansible.builtin.user:
-    name: "{{APPUSER}}"
-    comment: Roboshop application user
-  register: OUT
+    name: "{{APPUSER}}" 
+    comment: Roboshop Application User 
+  register: OUT 
 
-- name: Just Printing the OUTPUT
-  ansible.builtin.debug:
-   msg: "{{OUT}}"
+- name: Just printing the output 
+  ansible.builtin.debug: 
+    msg: "{{OUT}}"
 
 - name: Install bottle into the specified (virtualenv), inheriting globally installed modules
   ansible.builtin.pip:
