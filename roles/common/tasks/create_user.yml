@@ -13,5 +13,4 @@
       name:
         - boto3
         - botocore
-        - ansible
       executable: pip3 
