@@ -57,4 +57,4 @@
           amazon.aws.ec2:
             state: 'absent'
             instance_ids: '{{ INSTANCE_ID }}'
-            region: us-east-1
+            region: us-east-1 

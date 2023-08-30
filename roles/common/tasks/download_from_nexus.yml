@@ -17,4 +17,4 @@
     src: http://172.31.82.240:8081/repository/{{COMPONENT}}/{{COMPONENT}}-{{APP_VERSION}}.zip
     dest: /home/{{APPUSER}}/{{COMPONENT}}/
     remote_src: yes 
-  become_user: "{{APPUSER}}"
+  become_user: "{{APPUSER}}"  
