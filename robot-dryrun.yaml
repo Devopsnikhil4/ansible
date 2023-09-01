@@ -1,9 +1,3 @@
-- name: Install bottle into the specified (virtualenv), inheriting globally installed modules
-  ansible.builtin.pip:
-      name:
-        - boto3
-        - botocore
-      executable: pip3
 # This playbook creates an instance, runs the playbook and then terminates the instance 
 # Ensure you create an AMI from a server that has ANSIBLE Installed 
 - name: Creating EC2 for DryRun
